@@ -4,7 +4,8 @@
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
     "start": "node server.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "build": "webpack --debug"
   },
   "repository": {
     "type": "git",
@@ -41,8 +42,11 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
+    "immutable": "^3.8.1",
     "react": "^0.14.6",
     "react-addons-update": "^15.3.2",
-    "react-dom": "^0.14.6"
+    "react-dom": "^0.14.6",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0"
   }
 }
