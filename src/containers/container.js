@@ -6,12 +6,12 @@ export const ToDoList = connect (
   // This maps the store to the props of our component
   // Here we pass the todolist in the store to our component
   function mapStateToProps(state) {
-    return { todos: state }
+    return { todos: state.get('todos'), fetched: state.get('fetched') }
   },
   function mapDispatchToProps(dispatch) {
     return {
       addToDo: text => dispatch(addToDo(text)),
-      toggleToDo: id => dispatch(toggleToDo(id))
+      toggleToDo: id => dispatch(toggleToDo(id)),
     };
   }
 )(SampleToDoList); 

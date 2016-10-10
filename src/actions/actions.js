@@ -20,3 +20,27 @@ export function toggleToDo(id) {
     payload: id
   }
 }
+
+export function receivedTasks(tasks) {
+  return {
+    type: "RECEIVED_TASKS",
+    payload: tasks
+  }
+}
+
+export function fetchTasks() {
+  return function(dispatch) {
+    return fetch('http://localhost:3001/initialTasks')
+    .then(function(response) {
+        if (response.status >= 400) {
+            throw new Error("Bad response from server");
+        }
+        return response.json();
+    })
+    .then(function(stories) {
+        // console.log(stories);
+        dispatch(receivedTasks(stories));
+    });
+  }
+}
+

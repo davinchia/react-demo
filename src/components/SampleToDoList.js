@@ -1,6 +1,5 @@
 import React from 'react';
 import { List, Map } from 'immutable';
-
 import ContentItem from './ContentItem.js';
 import ItemCounter from './ItemCounter.js';
 
@@ -13,14 +12,19 @@ let SampleToDoList = React.createClass({
     //and is handy because responses are often is JSON objects
     //We access state using this.state
     let that = this;
-    console.log(this.props.todos)
-    var listOfItems = this.props.todos.map( 
+    // console.log(this.props.todos)
+    var listOfItems;
+    if (!this.props.fetched) {
+      listOfItems = "Fetching tasks..";
+    } else {
+      listOfItems = this.props.todos.map( 
         function(item) {
           if (!item.get('isDone')) {
             return that.generateEachItem(item, item.get('id'), that.deleteItem);
           }
         }
       );
+    }
     //React knows what to do with arrays of components.
     return (
       <div>
@@ -42,7 +46,6 @@ let SampleToDoList = React.createClass({
   //Similarly we can easily pass around functions to components to handle certain things. 
   handleKeyPress(e) {
     if (e.key === 'Enter') {
-      console.log("Added a new to-do!");
       this.props.addToDo(e.target.value); //we have now called our action
       e.target.value = "";
     }
